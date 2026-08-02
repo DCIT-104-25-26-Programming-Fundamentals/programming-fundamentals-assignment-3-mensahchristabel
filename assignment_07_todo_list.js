@@ -80,5 +80,72 @@
 // =============================================================================
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
+const readlineSync = require('readline-sync');
+
+let tasks = []; // Stores all tasks
+
+// ===== 1. ADD A TASK =====
+function addTask() {
+    let desc = readlineSync.question("Enter task description: ");
+    tasks.push(desc);
+    console.log("✅ Task added successfully!");
+}
+
+// ===== 2. VIEW ALL TASKS =====
+function viewTasks() {
+    if (tasks.length === 0) {
+        console.log("📋 Your to-do list is empty!");
+        return;
+    }
+    console.log("\n📋 Your Tasks:");
+    for (let i = 0; i < tasks.length; i++) {
+        console.log((i + 1) + ". " + tasks[i]);
+    }
+}
+
+// ===== 3. DELETE A TASK =====
+function deleteTask() {
+    if (tasks.length === 0) {
+        console.log("📋 Your to-do list is empty!");
+        return;
+    }
+    viewTasks();
+    let num = readlineSync.questionInt("\nEnter task number to delete: ");
+    
+    if (num < 1 || num > tasks.length) {
+        console.log("❌ Error: Invalid task number!");
+        return;
+    }
+    
+    tasks.splice(num - 1, 1); // Remove the task
+    console.log("✅ Task deleted successfully!");
+}
+
+// ===== MAIN MENU =====
+function main() {
+    while (true) {
+        console.log("\n==============================");
+        console.log("      TO-DO LIST MENU         ");
+        console.log("==============================");
+        console.log("1. Add a Task");
+        console.log("2. View All Tasks");
+        console.log("3. Delete a Task");
+        console.log("4. Quit");
+        
+        let choice = readlineSync.questionInt("Enter your choice (1-4): ");
+        
+        if (choice === 1) addTask();
+        else if (choice === 2) viewTasks();
+        else if (choice === 3) deleteTask();
+        else if (choice === 4) {
+            console.log("👋 Goodbye! Have a productive day!");
+            break;
+        }
+        else console.log("❌ Invalid choice! Enter 1-4.");
+    }
+}
+
+// Run the program
+main();
 
 
