@@ -48,5 +48,39 @@
 // =============================================================================
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
+const readlineSync = require('readline-sync');
+
+// ===== GET LETTER GRADE FUNCTION =====
+function getGrade(score) {
+    if (score >= 80 && score <= 100) {
+        return 'A';
+    } else if (score >= 70 && score <= 79) {
+        return 'B';
+    } else if (score >= 60 && score <= 69) {
+        return 'C';
+    } else if (score >= 50 && score <= 59) {
+        return 'D';
+    } else if (score >= 0 && score < 50) {
+        return 'F';
+    } else {
+        return null; // invalid
+    }
+}
+
+// ===== MAIN FUNCTION =====
+function main() {
+    let score = readlineSync.questionInt("Enter student score (0-100): ");
+    
+    let grade = getGrade(score);
+    
+    if (grade === null) {
+        console.log("Error: Score must be between 0 and 100.");
+    } else {
+        console.log("Grade: " + grade);
+    }
+}
+
+// Run the program
+main();
 
 
