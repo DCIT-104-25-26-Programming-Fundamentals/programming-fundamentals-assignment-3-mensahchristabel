@@ -73,5 +73,79 @@
 // =============================================================================
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
+const readlineSync = require('readline-sync');
 
+// ===== ADDITION =====
+function add(a, b) { return a + b; }
+
+// ===== SUBTRACTION =====
+function subtract(a, b) { return a - b; }
+
+// ===== MULTIPLICATION =====
+function multiply(a, b) { return a * b; }
+
+// ===== DIVISION =====
+function divide(a, b) {
+    if (b === 0) return "Error: Cannot divide by zero";
+    return (a / b).toFixed(2);
+}
+
+// ===== MODULUS =====
+function modulus(a, b) {
+    if (b === 0) return "Error: Cannot mod by zero";
+    return a % b;
+}
+
+// ===== EXPONENTIATION =====
+function power(base, exp) {
+    let result = 1;
+    for (let i = 0; i < exp; i++) {
+        result *= base;
+    }
+    return result;
+}
+
+// ===== MAIN MENU =====
+function main() {
+    while (true) {
+        console.log("\n==============================");
+        console.log("      SIMPLE CALCULATOR        ");
+        console.log("==============================");
+        console.log("1. Addition");
+        console.log("2. Subtraction");
+        console.log("3. Multiplication");
+        console.log("4. Division");
+        console.log("5. Modulus");
+        console.log("6. Exponentiation");
+        console.log("7. Quit");
+        
+        let choice = readlineSync.questionInt("Select an operation (1-7): ");
+        
+        if (choice === 7) {
+            console.log("👋 Goodbye!");
+            break;
+        }
+        
+        if (choice >= 1 && choice <= 6) {
+            let num1 = readlineSync.questionInt("Enter first number: ");
+            let num2 = readlineSync.questionInt("Enter second number: ");
+            let result, symbol;
+            
+            if (choice === 1) { result = add(num1, num2); symbol = "+"; }
+            else if (choice === 2) { result = subtract(num1, num2); symbol = "-"; }
+            else if (choice === 3) { result = multiply(num1, num2); symbol = "*"; }
+            else if (choice === 4) { result = divide(num1, num2); symbol = "/"; }
+            else if (choice === 5) { result = modulus(num1, num2); symbol = "%"; }
+            else if (choice === 6) { result = power(num1, num2); symbol = "**"; }
+            
+            console.log("\nResult: " + num1 + " " + symbol + " " + num2 + " = " + result);
+        } else {
+            console.log("❌ Invalid choice! Enter 1-7.");
+        }
+    }
+}
+
+// Run the program
+main();
+              
 
