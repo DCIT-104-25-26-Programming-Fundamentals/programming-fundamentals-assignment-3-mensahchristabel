@@ -42,5 +42,77 @@
 // =============================================================================
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
+const readlineSync = require('readline-sync');
+
+// ===== CALCULATE SUM =====
+function calculateSum(numbers) {
+    let sum = 0;
+    for (let i = 0; i < numbers.length; i++) {
+        sum += numbers[i];
+    }
+    return sum;
+}
+
+// ===== CALCULATE AVERAGE =====
+function calculateAverage(sum, count) {
+    return sum / count;
+}
+
+// ===== FIND MAXIMUM =====
+function findMax(numbers) {
+    let maxVal = numbers[0];
+    for (let i = 1; i < numbers.length; i++) {
+        if (numbers[i] > maxVal) {
+            maxVal = numbers[i];
+        }
+    }
+    return maxVal;
+}
+
+// ===== FIND MINIMUM =====
+function findMin(numbers) {
+    let minVal = numbers[0];
+    for (let i = 1; i < numbers.length; i++) {
+        if (numbers[i] < minVal) {
+            minVal = numbers[i];
+        }
+    }
+    return minVal;
+}
+
+// ===== MAIN FUNCTION =====
+function main() {
+    let n = readlineSync.questionInt("How many numbers? ");
+    
+    // Validate N must be positive
+    if (n <= 0) {
+        console.log("Error: Number must be positive!");
+        return;
+    }
+    
+    let numbers = [];
+    
+    // Read each number
+    for (let i = 0; i < n; i++) {
+        let num = readlineSync.questionInt("Enter number " + (i + 1) + ": ");
+        numbers.push(num);
+    }
+    
+    // Calculate everything
+    let sum = calculateSum(numbers);
+    let avg = calculateAverage(sum, n);
+    let maxVal = findMax(numbers);
+    let minVal = findMin(numbers);
+    
+    // Display results
+    console.log("\nResults:");
+    console.log("Sum:      " + sum);
+    console.log("Average:  " + avg);
+    console.log("Maximum:  " + maxVal);
+    console.log("Minimum:  " + minVal);
+}
+
+// Run the program
+main();
 
 
